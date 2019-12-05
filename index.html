@@ -2,11 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no, user-scalable=no"
     />
+
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
 
     <!-- Start VWO Async Smartcode -->
     <script type='text/javascript'>
@@ -26,6 +28,27 @@
   </head>
   
   <body>
-      <h1>Hello World</h1>
+      <h1 id="bar">Hello World</h1>
+
+      <script>
+          async function foo() {
+            var client = contentful.createClient({
+            space: 's2fcai5rwza7',
+            accessToken: 'zgD-Wd40Mds9fWyPMGCkUU5LCnr6MsfDy1PqF_ujb-0'
+            });
+
+            const entries = await client.getEntries();
+
+            const firstEntry = entries.items[0].fields.title;
+            console.log("entries", firstEntry)
+            const bar = document.getElementById("bar");
+
+            bar.innerHTML = firstEntry;
+          }
+
+          foo();
+          
+            // .then((response) => console.log(response.items))
+      </script>
   </body>
 </html>
