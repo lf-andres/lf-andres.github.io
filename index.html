@@ -55,7 +55,10 @@
             bar.innerHTML = firstEntry;
           }
 
-          foo();
+          window.setTimeout(() => {
+            foo();
+          }, 1000)
+          
           
             // .then((response) => console.log(response.items))
       </script>
